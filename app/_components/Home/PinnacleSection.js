@@ -16,7 +16,7 @@ export default function PinnacleSection() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-[31px] w-full">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-[31px] w-full">
         <div className="border border-[#ADB5BD] py-[23px] px-[26px] rounded-[10px] shadow h-[251px] justify-between flex flex-col">
           <Image src={target} alt="target" className="w-16 h-16" />
           <div className="space-y-[9px]">

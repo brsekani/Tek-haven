@@ -1,12 +1,16 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import logo from "@/public/svg/logo.svg";
+import { motion } from "framer-motion";
 
 export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
+  const menuRef = useRef(null); // To check click outside
+  const navRef = useRef(null); // To detect scroll
 
+  // Close the menu on resize for larger screens
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 1024) {
@@ -18,13 +22,42 @@ export default function Nav() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // Close the menu on click outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(event.target) &&
+        !navRef.current.contains(event.target)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  // Close menu on scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsOpen(false);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <nav className="bg-[#F5F4FF] md:rounded-[20px] rounded-[10px] px-6 lg:px-[91px] py-4 flex items-center justify-between lg:h-[102px] h-[50px] relative">
+    <nav
+      className="bg-[#F5F4FF] md:rounded-[20px] rounded-[10px] px-6 lg:px-[91px] py-4 flex items-center justify-between lg:h-[102px] h-[50px] relative"
+      ref={navRef}
+    >
       {/* Logo */}
       <Image
         src={logo}
         alt="logo"
-        className="cursor-pointer h-[21.58px] lg:h-full"
+        className="cursor-pointer md:w-[200px] w-[150px] h-auto"
       />
 
       {/* Desktop Menu */}
@@ -64,17 +97,24 @@ export default function Nav() {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="absolute top-[90px] left-0 w-full bg-[#F5F4FF] flex flex-col items-center py-6 gap-6 z-50 shadow-md rounded-b-[20px] lg:hidden">
-          <ul className="flex flex-col gap-6 text-[16px] text-[#000000]">
+        <motion.div
+          className="absolute top-[60px] left-0 w-full bg-[#F5F4FF] flex flex-col items-center py-6 px-6 gap-6 z-50 shadow-md rounded-b-[20px] lg:hidden"
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 50 }}
+          transition={{ duration: 0.3 }}
+          ref={menuRef}
+        >
+          <ul className="flex flex-col gap-6 text-[16px] text-[#000000] text-center">
             <li className="cursor-pointer">Home</li>
             <li className="cursor-pointer">Our Services</li>
             <li className="cursor-pointer">Our Team</li>
             <li className="cursor-pointer">Contact Us</li>
           </ul>
-          <button className="h-[50px] w-[140px] rounded-[10px] bg-[#004BB1] text-white text-[18px] font-semibold">
+          <button className="h-[50px] w-full rounded-[10px] bg-[#004BB1] text-white text-[14px] font-semibold">
             Get Started
           </button>
-        </div>
+        </motion.div>
       )}
     </nav>
   );

@@ -1,6 +1,8 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import "./fonts.css";
+
+import Footer from "./_components/Footer";
 import Nav from "./_components/Nav";
 
 export const metadata = {
@@ -12,11 +14,14 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`antialiased md:py-[30px] py-[14px] md:px-[45px] px-[25px] w-full`}
+        className={`antialiased md:pt-[30px] pt-[14px]  w-full`}
         style={{ fontFamily: "var(--font-sf-pro-display)" }}
       >
-        <Nav />
-        {children}
+        <div className="md:px-[45px] px-[25px]">
+          <Nav />
+          {children}
+        </div>
+        <Footer />
       </body>
     </html>
   );
