@@ -4,11 +4,21 @@ import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import logo from "@/public/svg/logo.svg";
 import { motion } from "framer-motion";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null); // To check click outside
   const navRef = useRef(null); // To detect scroll
+  const pathname = usePathname();
+
+  const navItems = [
+    { name: "Home", href: "/" },
+    { name: "Our Services", href: "/our-services" },
+    { name: "Our Team", href: "/our-team" },
+    { name: "Contact Us", href: "/contact-us" },
+  ];
 
   // Close the menu on resize for larger screens
   useEffect(() => {
@@ -62,10 +72,20 @@ export default function Nav() {
 
       {/* Desktop Menu */}
       <ul className="hidden lg:flex items-center gap-[25px] text-[16px] text-[#000000]">
-        <li className="cursor-pointer">Home</li>
-        <li className="cursor-pointer">Our Services</li>
-        <li className="cursor-pointer">Our Team</li>
-        <li className="cursor-pointer">Contact Us</li>
+        {navItems.map((item) => (
+          <Link
+            key={item.href}
+            href={item.href}
+            className={
+              ("",
+              pathname === item.href
+                ? "text-primary"
+                : "text-secondary hover:text-primary")
+            }
+          >
+            {item.name}
+          </Link>
+        ))}
       </ul>
 
       {/* Desktop Button */}
@@ -106,10 +126,20 @@ export default function Nav() {
           ref={menuRef}
         >
           <ul className="flex flex-col gap-6 text-[16px] text-[#000000] text-center">
-            <li className="cursor-pointer">Home</li>
-            <li className="cursor-pointer">Our Services</li>
-            <li className="cursor-pointer">Our Team</li>
-            <li className="cursor-pointer">Contact Us</li>
+            {navItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={
+                  ("",
+                  pathname === item.href
+                    ? "text-primary"
+                    : "text-secondary hover:text-primary")
+                }
+              >
+                {item.name}
+              </Link>
+            ))}
           </ul>
           <button className="h-[50px] w-full rounded-[10px] bg-[#004BB1] text-white text-[14px] font-semibold">
             Get Started
