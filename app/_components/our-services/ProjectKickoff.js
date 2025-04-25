@@ -17,7 +17,7 @@ export default function ProjectKickoff() {
           Are you prepared to kick off your project?
         </h1>
         <p className="text-base sm:text-lg md:text-[24px] leading-[120%] mt-5 text-center">
-          Let's bring your vision to life!
+          Let&apos;s bring your vision to life!
         </p>
 
         <button className="sm:w-[320px] w-full sm:h-[79px] h-[60px] mt-[31px] rounded-[10px] text-[var(--color-primary)] bg-white text-[24px] leading-[100%] font-bold transition-all duration-300 ease-in-out hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50 cursor-pointer">
