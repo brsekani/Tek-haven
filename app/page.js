@@ -6,11 +6,11 @@ import OurTrustedClients from "./_components/Home/OurTrustedClients";
 
 export default function Home() {
   return (
-    <div className="max-w-[1440px] mx-auto w-full h-full font-sfpro">
+    <section className="max-w-[1440px] mx-auto w-full h-full font-sfpro">
       <Hero />
       <PinnacleSection />
       <OurAchievement />
       <OurTrustedClients />
-    </div>
+    </section>
   );
 }
