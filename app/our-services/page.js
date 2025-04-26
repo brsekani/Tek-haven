@@ -1,4 +1,9 @@
-// page.js
+"use client";
+
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 import ServiceCard from "../_components/our-services/ServiceCard";
 import customWebsite from "@/public/svg/customWebsite.svg";
 import webDev from "@/public/svg/webDev.svg";
@@ -8,6 +13,8 @@ import cloudIntegration from "@/public/svg/cloudIntegration.svg";
 import VR from "@/public/svg/VR.svg";
 import ProjectShowcase from "../_components/our-services/ProjectShowcase";
 import ProjectKickoff from "../_components/ProjectKickoff";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const features = [
   {
@@ -49,9 +56,58 @@ const features = [
 ];
 
 export default function Page() {
+  const headingRef = useRef(null);
+  const cardsRef = useRef([]);
+  cardsRef.current = [];
+
+  const addToRefs = (el) => {
+    if (el && !cardsRef.current.includes(el)) {
+      cardsRef.current.push(el);
+    }
+  };
+
+  useEffect(() => {
+    // Animate heading
+    gsap.fromTo(
+      headingRef.current,
+      { opacity: 0, y: 50 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: headingRef.current,
+          start: "top 80%",
+        },
+      }
+    );
+
+    // Animate service cards
+    ScrollTrigger.batch(cardsRef.current, {
+      onEnter: (batch) => {
+        gsap.fromTo(
+          batch,
+          { opacity: 0, y: 40 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            stagger: 0.15,
+            ease: "power2.out",
+          }
+        );
+      },
+      start: "top 90%",
+    });
+  }, []);
+
   return (
     <section className="max-w-[1440px] mx-auto w-full h-full font-sfpro">
-      <div className="md:mt-[90px] mt-[65px] md:mb-[128px] mb-[51px] flex items-center flex-col md:gap-[27px] gap-[10px] text-center px-4">
+      <div
+        ref={headingRef}
+        className="md:mt-[90px] mt-[65px] md:mb-[128px] mb-[51px] flex items-center flex-col md:gap-[27px] gap-[10px] text-center px-4"
+      >
         <h1 className="text-[36px] sm:text-[48px] lg:text-[70px] font-bold leading-[120%] text-primary">
           Our Technology Solutions
         </h1>
@@ -62,12 +118,13 @@ export default function Page() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[31px] w-full">
         {features.map((feature, index) => (
-          <ServiceCard
-            key={index}
-            icon={feature.icon}
-            title={feature.title}
-            description={feature.description}
-          />
+          <div key={index} ref={addToRefs}>
+            <ServiceCard
+              icon={feature.icon}
+              title={feature.title}
+              description={feature.description}
+            />
+          </div>
         ))}
       </div>
 

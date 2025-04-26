@@ -1,6 +1,13 @@
-import ProjectKickoff from "../_components/ProjectKickoff";
+"use client";
+
+import { useEffect, useRef } from "react";
 import Image from "next/image";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+import ProjectKickoff from "../_components/ProjectKickoff";
 import elispeimage4 from "@/public/images/elispeimage4.png";
+// Staff images...
 import OladimejiDosunmu from "@/public/images/OladimejiDosunmu.png";
 import VictorMorgan from "@/public/images/VictorMorgan.png";
 import KoviPeace from "@/public/images/KoviPeace.png";
@@ -24,6 +31,8 @@ import AbiodunFaruq from "@/public/images/AbiodunFaruq.png";
 import YusufMusa from "@/public/images/YusufMusa.png";
 import OseoboSuccess from "@/public/images/OseoboSuccess.png";
 import ChimezieDeclan from "@/public/images/ChimezieDeclan.png";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const staffs = [
   {
@@ -144,9 +153,47 @@ const staffs = [
 ];
 
 export default function Page() {
+  const headingRef = useRef(null);
+  const cardsRef = useRef([]);
+
+  useEffect(() => {
+    // Animate heading
+    gsap.fromTo(
+      headingRef.current,
+      { opacity: 0, y: 40 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: headingRef.current,
+          start: "top 80%",
+        },
+      }
+    );
+
+    // Animate staff cards
+    gsap.set(cardsRef.current, { opacity: 0, y: 50 });
+    gsap.to(cardsRef.current, {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      stagger: 0.15,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: headingRef.current,
+        start: "top 85%",
+      },
+    });
+  }, []);
+
   return (
     <section className="max-w-[1440px] mx-auto w-full h-full font-sfpro">
-      <div className="md:mt-[90px] mt-[65px] md:mb-[128px] mb-[51px] flex items-center flex-col md:gap-[27px] gap-[10px] text-center px-4">
+      <div
+        ref={headingRef}
+        className="md:mt-[90px] mt-[65px] md:mb-[128px] mb-[51px] flex items-center flex-col md:gap-[27px] gap-[10px] text-center px-4"
+      >
         <h1 className="text-[36px] sm:text-[48px] lg:text-[70px] font-bold leading-[120%] text-primary max-w-[700px] w-full">
           Meet the Minds Behind{" "}
           <span className="text-white bg-primary px-1 rounded-[10px]">
@@ -154,7 +201,7 @@ export default function Page() {
           </span>
         </h1>
         <p className="text-[16px] sm:text-[20px] lg:text-[24px] leading-[100%] text-secondary max-w-[800px] w-full">
-          Where creativity meets innovation,Delivering exceptional results,
+          Where creativity meets innovation, Delivering exceptional results,
           every time to make long lasting Impact.
         </p>
       </div>
@@ -163,6 +210,7 @@ export default function Page() {
         {staffs.map((staff, i) => (
           <div
             key={i}
+            ref={(el) => (cardsRef.current[i] = el)}
             className="md:max-w-[386px] max-h-[459px] w-full h-full rounded-[10px] space-y-[18px]"
           >
             <Image
