@@ -1,3 +1,6 @@
+"use client";
+
+import CountUp from "react-countup";
 import Image from "next/image";
 import achievementBgIcon from "@/public/images/achievement-bg-icon.png";
 
@@ -23,11 +26,11 @@ export default function OurAchievement() {
           </p>
         </div>
 
-        <div className="w-full lg:w-1/2 flex flex-col gap-8">
+        <div className="w-full lg:w-1/2 flex flex-col gap-10">
           <div className="flex justify-between flex-wrap gap-4">
             <div className="flex-1 min-w-[120px] flex flex-col items-center">
               <h1 className="text-2xl md:text-[45px] font-bold leading-[100%]">
-                5+
+                <CountUp end={5} duration={2} />+
               </h1>
               <p className="text-sm md:text-[24px] text-center">
                 Years Experience
@@ -36,9 +39,9 @@ export default function OurAchievement() {
 
             <div className="flex-1 min-w-[120px] flex flex-col items-center">
               <h1 className="text-2xl md:text-[45px] font-bold leading-[100%]">
-                100+
+                <CountUp end={100} duration={2} />+
               </h1>
-              <p className="text-sm md:text-[24px] text-center">
+              <p className="text-sm md:text-[24px] text-center whitespace-nowrap">
                 Projects Completed
               </p>
             </div>
@@ -47,7 +50,7 @@ export default function OurAchievement() {
           <div className="flex justify-between flex-wrap gap-4">
             <div className="flex-1 min-w-[120px] flex flex-col items-center">
               <h1 className="text-2xl md:text-[45px] font-bold leading-[100%]">
-                80+
+                <CountUp end={80} duration={2} />+
               </h1>
               <p className="text-sm md:text-[24px] text-center">
                 Satisfied Clients
@@ -56,7 +59,7 @@ export default function OurAchievement() {
 
             <div className="flex-1 min-w-[120px] flex flex-col items-center">
               <h1 className="text-2xl md:text-[45px] font-bold leading-[100%]">
-                80+
+                <CountUp end={80} duration={2} />+
               </h1>
               <p className="text-sm md:text-[24px] text-center">
                 Satisfied Clients

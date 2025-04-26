@@ -7,7 +7,7 @@ import appDev from "@/public/svg/appDev.svg";
 import cloudIntegration from "@/public/svg/cloudIntegration.svg";
 import VR from "@/public/svg/VR.svg";
 import ProjectShowcase from "../_components/our-services/ProjectShowcase";
-import ProjectKickoff from "../_components/our-services/ProjectKickoff";
+import ProjectKickoff from "../_components/ProjectKickoff";
 
 const features = [
   {

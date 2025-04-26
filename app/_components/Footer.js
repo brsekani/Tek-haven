@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import logo from "@/public/svg/logo.svg";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -9,11 +10,13 @@ export default function Footer() {
       <div className="flex flex-col lg:flex-row justify-between gap-10 mb-[43px]">
         {/* Logo and Description */}
         <div className="flex flex-col gap-5 max-w-[322px]">
-          <Image
-            src={logo}
-            alt="Logo"
-            className="cursor-pointer w-[150px] h-auto"
-          />
+          <Link href={"/"}>
+            <Image
+              src={logo}
+              alt="Logo"
+              className="cursor-pointer w-[150px] h-auto"
+            />
+          </Link>
           <p className="text-[15px] leading-[100%] text-secondary">
             Established with the vision to innovate, simplify, and empower, we
             are a dynamic technology solutions company that creates impactful

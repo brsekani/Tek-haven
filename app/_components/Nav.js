@@ -64,11 +64,14 @@ export default function Nav() {
       ref={navRef}
     >
       {/* Logo */}
-      <Image
-        src={logo}
-        alt="logo"
-        className="cursor-pointer md:w-[200px] w-[150px] h-auto"
-      />
+
+      <Link href={"/"}>
+        <Image
+          src={logo}
+          alt="logo"
+          className="cursor-pointer md:w-[200px] w-[150px] h-auto"
+        />
+      </Link>
 
       {/* Desktop Menu */}
       <ul className="hidden lg:flex items-center gap-[25px] text-[16px] text-[#000000]">
@@ -130,6 +133,7 @@ export default function Nav() {
               <Link
                 key={item.href}
                 href={item.href}
+                onClick={() => setIsOpen(false)}
                 className={
                   ("",
                   pathname === item.href
