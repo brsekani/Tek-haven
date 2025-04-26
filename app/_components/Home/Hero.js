@@ -10,6 +10,7 @@ import elispeimage3 from "@/public/images/elispeimage3.png";
 import elispeimage4 from "@/public/images/elispeimage4.png";
 import frame from "@/public/images/Frame 15.png";
 import Image from "next/image";
+import Link from "next/link";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -109,13 +110,19 @@ export default function Hero() {
 
         {/* Call to Action Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 sm:mt-5 mt-3 sm:text-[24px] text-[20px] leading-[100%] font-bold w-full items-center justify-center hero-text opacity-0 translate-y-5">
-          <button className="sm:w-[290px] w-full sm:h-[79px] h-[60px] rounded-[10px] bg-[var(--color-primary)] text-white hover:bg-[#0054d1] transition-all duration-300 ease-in-out cursor-pointer">
+          <Link
+            href={"/contact-us"}
+            className="sm:w-[290px] w-full sm:h-[79px] h-[60px] rounded-[10px] bg-[var(--color-primary)] text-white hover:bg-[#0054d1] transition-all duration-300 ease-in-out cursor-pointer flex items-center justify-center"
+          >
             Get Started
-          </button>
+          </Link>
 
-          <button className="sm:w-[290px] w-full sm:h-[79px] h-[60px] rounded-[10px] border border-[var(--color-primary)] text-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-white transition-all duration-300 ease-in-out cursor-pointer">
+          <Link
+            href={"/our-services"}
+            className="sm:w-[290px] w-full sm:h-[79px] h-[60px] rounded-[10px] border border-[var(--color-primary)] text-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-white transition-all duration-300 ease-in-out cursor-pointer flex items-center justify-center"
+          >
             Learn More
-          </button>
+          </Link>
         </div>
       </div>
 

@@ -70,6 +70,7 @@ export default function Nav() {
           src={logo}
           alt="logo"
           className="cursor-pointer md:w-[200px] w-[150px] h-auto"
+          onClick={() => setIsOpen(false)}
         />
       </Link>
 
@@ -92,9 +93,12 @@ export default function Nav() {
       </ul>
 
       {/* Desktop Button */}
-      <button className="hidden lg:block h-[50px] w-[140px] rounded-[10px] bg-[#004BB1] text-white text-[18px] font-semibold">
+      <Link
+        href={"/contact-us"}
+        className="hidden lg:flex h-[50px] w-[140px] rounded-[10px] bg-[#004BB1] text-white text-[18px] font-semibold  items-center justify-center"
+      >
         Get Started
-      </button>
+      </Link>
 
       {/* Mobile Toggle */}
       <div
@@ -145,9 +149,13 @@ export default function Nav() {
               </Link>
             ))}
           </ul>
-          <button className="h-[50px] w-full rounded-[10px] bg-[#004BB1] text-white text-[14px] font-semibold">
+          <Link
+            href={"/contact-us"}
+            onClick={() => setIsOpen(false)}
+            className="h-[50px] w-full rounded-[10px] bg-[#004BB1] text-white text-[14px] font-semibold flex items-center justify-center"
+          >
             Get Started
-          </button>
+          </Link>
         </motion.div>
       )}
     </nav>

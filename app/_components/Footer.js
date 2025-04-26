@@ -78,11 +78,33 @@ export default function Footer() {
               Socials
             </h3>
             <ul className="md:text-[20px] text-[14px] leading-[100%] space-y-[11px]">
-              <li className="hover:text-primary cursor-pointer">Facebook</li>
-              <li className="hover:text-primary cursor-pointer">Instragram</li>
-              <li className="hover:text-primary cursor-pointer">Linkedln</li>
               <li className="hover:text-primary cursor-pointer">
-                X (Formerly Twitter)
+                <Link
+                  href="https://www.instagram.com/tekhavensolutions/profilecard/?igsh=MXM5dWJ3YWtjMWQzMg=="
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Instagram
+                </Link>
+              </li>
+
+              <li className="hover:text-primary cursor-pointer">
+                <Link
+                  href="https://www.facebook.com/share/1ATBc9tNVL/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Facebook
+                </Link>
+              </li>
+              <li className="hover:text-primary cursor-pointer">
+                <Link
+                  href="https://www.linkedin.com/posts/tekhaven-solutions_tekhavensolutions-innovativesolutions-businesssuccess-activity-7289979448576167936-2OS6?utm_source=share&utm_medium=member_ios"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Linkedln
+                </Link>
               </li>
             </ul>
           </div>
