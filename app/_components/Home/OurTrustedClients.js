@@ -1,12 +1,31 @@
 "use client";
+
+import { useEffect, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import image1 from "@/public/images/elispeimage1.png";
 import Image from "next/image";
+import gsap from "gsap";
 
 export default function OurTrustedClients() {
+  const cardsRef = useRef([]);
+
+  useEffect(() => {
+    if (!cardsRef.current) return;
+
+    gsap.set(cardsRef.current, { opacity: 0, y: 50 });
+
+    gsap.to(cardsRef.current, {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      stagger: 0.2,
+      ease: "power3.out",
+    });
+  }, []);
+
   return (
     <div className="flex items-center flex-col mt-[80px] px-4">
       <div className="max-w-[793px] w-full text-center space-y-5 mb-12">
@@ -24,7 +43,6 @@ export default function OurTrustedClients() {
           modules={[Pagination, Autoplay]}
           spaceBetween={30}
           slidesPerView={1}
-          //   pagination={{ clickable: true }}
           autoplay={{ delay: 3000 }}
           breakpoints={{
             640: { slidesPerView: 1 },
@@ -34,7 +52,10 @@ export default function OurTrustedClients() {
         >
           {[1, 2, 3, 4].map((_, i) => (
             <SwiperSlide key={i}>
-              <div className="bg-white shadow-lg rounded-xl md:pt-[76px] md:px-[25px] md:pb-[25px] p-[25px] md:min-h-[396px] min-h-[299px] flex flex-col justify-between md:max-w-[534px] sm:max-w-[380px] w-full border border-[#D1D1D6]">
+              <div
+                ref={(el) => (cardsRef.current[i] = el)}
+                className="bg-white shadow-lg rounded-xl md:pt-[76px] md:px-[25px] md:pb-[25px] p-[25px] md:min-h-[396px] min-h-[299px] flex flex-col justify-between md:max-w-[534px] sm:max-w-[380px] w-full border border-[#D1D1D6]"
+              >
                 <p className="text-sm md:text-base text-gray-700 mb-4">
                   Tek Haven&apos;s innovative solutions transformed our IT
                   infrastructure. Their expertise and support have been

@@ -3,8 +3,18 @@
 import Image from "next/image";
 import logo from "@/public/svg/logo.svg";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+const navItems = [
+  { name: "Home", href: "/" },
+  { name: "Our Services", href: "/our-services" },
+  { name: "Our Team", href: "/our-team" },
+  { name: "Contact Us", href: "/contact-us" },
+];
 
 export default function Footer() {
+  const pathname = usePathname();
+
   return (
     <footer className="bg-[#F5F4FF] px-10 md:pt-[60px] md:pb-[30px] py-10 mt-[185px]">
       <div className="flex flex-col lg:flex-row justify-between gap-10 mb-[43px]">
@@ -31,11 +41,21 @@ export default function Footer() {
             <h3 className="md:text-[24px] text-[14px] font-medium leading-[100%]">
               Menu
             </h3>
-            <ul className="md:text-[20px] text-[14px] leading-[100%] space-y-[11px]">
-              <li className="hover:text-primary cursor-pointer">Home</li>
-              <li className="hover:text-primary cursor-pointer">About</li>
-              <li className="hover:text-primary cursor-pointer">Services</li>
-              <li className="hover:text-primary cursor-pointer">Contact</li>
+            <ul className="md:text-[20px] text-[14px] leading-[100%] flex flex-col gap-[11px]">
+              {navItems.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={
+                    ("",
+                    pathname === item.href
+                      ? "text-primary"
+                      : "text-secondary hover:text-primary")
+                  }
+                >
+                  {item.name}
+                </Link>
+              ))}
             </ul>
           </div>
 
