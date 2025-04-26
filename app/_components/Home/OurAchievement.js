@@ -73,7 +73,7 @@ export default function OurAchievement() {
           <div className="flex justify-between flex-wrap gap-4">
             <div className="flex-1 min-w-[120px] flex flex-col items-center">
               <h1 className="text-2xl md:text-[45px] font-bold leading-[100%] achievement-count opacity-0 translate-y-5">
-                <CountUp end={5} duration={2} />+
+                <CountUp end={5} duration={6} />+
               </h1>
               <p className="text-sm md:text-[24px] text-center achievement-count opacity-0 translate-y-5">
                 Years Experience
@@ -82,7 +82,7 @@ export default function OurAchievement() {
 
             <div className="flex-1 min-w-[120px] flex flex-col items-center">
               <h1 className="text-2xl md:text-[45px] font-bold leading-[100%] achievement-count opacity-0 translate-y-5">
-                <CountUp end={100} duration={2} />+
+                <CountUp end={100} duration={6} />+
               </h1>
               <p className="text-sm md:text-[24px] text-center whitespace-nowrap achievement-count opacity-0 translate-y-5">
                 Projects Completed
@@ -93,7 +93,7 @@ export default function OurAchievement() {
           <div className="flex justify-between flex-wrap gap-4">
             <div className="flex-1 min-w-[120px] flex flex-col items-center">
               <h1 className="text-2xl md:text-[45px] font-bold leading-[100%] achievement-count opacity-0 translate-y-5">
-                <CountUp end={80} duration={2} />+
+                <CountUp end={80} duration={6} />+
               </h1>
               <p className="text-sm md:text-[24px] text-center achievement-count opacity-0 translate-y-5">
                 Satisfied Clients
@@ -102,10 +102,10 @@ export default function OurAchievement() {
 
             <div className="flex-1 min-w-[120px] flex flex-col items-center">
               <h1 className="text-2xl md:text-[45px] font-bold leading-[100%] achievement-count opacity-0 translate-y-5">
-                <CountUp end={80} duration={2} />+
+                <CountUp end={100000} duration={3} separator="," />+
               </h1>
               <p className="text-sm md:text-[24px] text-center achievement-count opacity-0 translate-y-5">
-                Satisfied Clients
+                Users
               </p>
             </div>
           </div>

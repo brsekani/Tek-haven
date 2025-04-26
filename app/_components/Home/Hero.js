@@ -11,6 +11,7 @@ import elispeimage4 from "@/public/images/elispeimage4.png";
 import frame from "@/public/images/Frame 15.png";
 import Image from "next/image";
 import Link from "next/link";
+import CountUp from "react-countup";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -93,7 +94,7 @@ export default function Hero() {
           </div>
 
           <p className="text-[20px] leading-[100%] text-primary whitespace-nowrap hero-text opacity-0 translate-y-5">
-            80+ Satisfied Clients
+            <CountUp end={80} duration={6} />+ Satisfied Clients
           </p>
         </div>
 
